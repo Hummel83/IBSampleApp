@@ -1,18 +1,17 @@
 /* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+
 using IBApi;
 using IBSampleApp.messages;
 using IBSampleApp.util;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 
 namespace IBSampleApp.ui
 {
-    class NewsManager
+    internal class NewsManager
     {
         private const int TICK_NEWS_ID_BASE = 90000000;
         private const int TICK_NEWS_ID = TICK_NEWS_ID_BASE;
@@ -20,8 +19,8 @@ namespace IBSampleApp.ui
         private const int NEWS_ARTICLE_ID = TICK_NEWS_ID_BASE + 10000;
         private const int HISTORICAL_NEWS_ID = TICK_NEWS_ID_BASE + 20000;
 
-        int rowCountHistoricalNewsGrid = 0;
-        int rowCountTickNewsGrid = 0;
+        private int rowCountHistoricalNewsGrid = 0;
+        private int rowCountTickNewsGrid = 0;
 
         private IBClient ibClient;
         private DataGridView tickNewsGrid;
@@ -160,7 +159,8 @@ namespace IBSampleApp.ui
             IbClient.ClientSocket.reqHistoricalNews(HISTORICAL_NEWS_ID, conId, providerCodes, startDateTime, endDateTime, totalResults, new List<TagValue>());
         }
 
-        public void ClearHistoricalNews() {
+        public void ClearHistoricalNews()
+        {
             rowCountHistoricalNewsGrid = 0;
             HistoricalNewsGrid.Rows.Clear();
         }
@@ -200,6 +200,5 @@ namespace IBSampleApp.ui
             get { return path; }
             set { path = value; }
         }
-
     }
 }

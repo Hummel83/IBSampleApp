@@ -1,14 +1,11 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using IBApi;
 
 namespace IBSampleApp.messages
 {
-    class PositionMultiMessage 
+    internal class PositionMultiMessage
     {
         private int reqId;
         private string account;
@@ -16,7 +13,7 @@ namespace IBSampleApp.messages
         private Contract contract;
         private double position;
         private double averageCost;
-        
+
         public PositionMultiMessage(int reqId, string account, string modelCode, Contract contract, double pos, double avgCost)
         {
             ReqId = reqId;
@@ -56,7 +53,7 @@ namespace IBSampleApp.messages
             get { return position; }
             set { position = value; }
         }
-        
+
         public double AverageCost
         {
             get { return averageCost; }

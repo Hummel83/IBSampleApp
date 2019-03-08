@@ -1,13 +1,9 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace IBSampleApp.messages
 {
-    class HistoricalDataMessage
+    internal class HistoricalDataMessage
     {
         protected int requestId;
         protected string date;
@@ -25,44 +21,43 @@ namespace IBSampleApp.messages
             get { return requestId; }
             set { requestId = value; }
         }
-        
+
         public string Date
         {
             get { return date; }
             set { date = value; }
         }
-        
+
         public double Open
         {
             get { return open; }
             set { open = value; }
         }
-        
 
         public double High
         {
             get { return high; }
             set { high = value; }
         }
-        
+
         public double Low
         {
             get { return low; }
             set { low = value; }
         }
-        
+
         public double Close
         {
             get { return close; }
             set { close = value; }
         }
-        
+
         public long Volume
         {
             get { return volume; }
             set { volume = value; }
         }
-        
+
         public int Count
         {
             get { return count; }

@@ -1,26 +1,27 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
+
+using IBApi;
+using IBSampleApp.messages;
+using IBSampleApp.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using IBSampleApp.messages;
-using IBApi;
-using IBSampleApp.util;
 
 namespace IBSampleApp.ui
 {
-    class OptionsManager
+    internal class OptionsManager
     {
         public const int OPTIONS_ID_BASE = 70000000;
         private const int OPTIONS_DATA_CALL_BASE = OPTIONS_ID_BASE + 100000;
         private const int OPTIONS_DATA_PUT_BASE = OPTIONS_ID_BASE + 200000;
-        
+
         private const int OPTIONS_EXERCISING_BASE = OPTIONS_ID_BASE + 1000000;
 
         //Options' chain table indexes
         private const int LASTTRADEDATE_INDEX = 0;
+
         private const int STRIKE_INDEX = 1;
         private const int BID_INDEX = 2;
         private const int ASK_INDEX = 3;
@@ -32,6 +33,7 @@ namespace IBSampleApp.ui
 
         //Options positions table indexes (exercising)
         private const int POS_CONTRACT_IDX = 0;
+
         private const int POS_ACCOUNT_IDX = 1;
         private const int POS_POSITION_IDX = 2;
         private const int POS_MARKET_PRICE_IDX = 3;
@@ -45,10 +47,10 @@ namespace IBSampleApp.ui
         private int currentOptionsExercisingRequest = OPTIONS_EXERCISING_BASE;
 
         private bool isRequestActive = false;
-        
+
         private string optionsDataExchange;
         private bool useSnapshot = false;
-        
+
         private IBClient ibClient;
         private DataGridView callGrid;
         private DataGridView putGrid;
@@ -97,7 +99,7 @@ namespace IBSampleApp.ui
             {
                 UpdateOptionGridTick(putGrid, (mktDataMsg.RequestId - OPTIONS_DATA_PUT_BASE), mktDataMsg);
             }
-        }        
+        }
 
         public void UpdateUI(SecurityDefinitionOptionParameterMessage secDefOptParamMsg)
         {
@@ -119,9 +121,8 @@ namespace IBSampleApp.ui
                 optionParamsListView.Items.Add(item);
             }
         }
-        
 
-        Dictionary<SecDefOptParamKey, ListViewGroup> secDefOptParamGroups = new Dictionary<SecDefOptParamKey, ListViewGroup>();
+        private Dictionary<SecDefOptParamKey, ListViewGroup> secDefOptParamGroups = new Dictionary<SecDefOptParamKey, ListViewGroup>();
 
         public void HandlePosition(UpdatePortfolioMessage positionMessage)
         {
@@ -202,6 +203,7 @@ namespace IBSampleApp.ui
                 case TickType.DELAYED_ASK:
                     grid[ASK_INDEX, row].Value = message.Price;
                     break;
+
                 case TickType.BID:
                 case TickType.DELAYED_BID:
                     grid[BID_INDEX, row].Value = message.Price;
@@ -209,7 +211,6 @@ namespace IBSampleApp.ui
             }
         }
 
-       
         private void UpdateOptionGridTickOption(DataGridView grid, int row, TickOptionMessage message)
         {
             grid[IMPLIED_VOLATILITY_INDEX, row].Value = message.ImpliedVolatility;
@@ -225,9 +226,9 @@ namespace IBSampleApp.ui
             set { isRequestActive = value; }
         }
 
-        public void ExerciseOptions(int ovrd, int quantity, string exchange, int action) 
+        public void ExerciseOptions(int ovrd, int quantity, string exchange, int action)
         {
-            if (positionsGrid.SelectedRows.Count > 0 )
+            if (positionsGrid.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = positionsGrid.SelectedRows[0];
                 int contractIndex = selectedRow.Index;
@@ -237,7 +238,6 @@ namespace IBSampleApp.ui
                 ibClient.ClientSocket.exerciseOptions(currentOptionsExercisingRequest, contract, action, quantity, account, ovrd);
             }
         }
-
 
         public void SecurityDefinitionOptionParametersRequest(string symbol, string exchange, string secType, int conId)
         {

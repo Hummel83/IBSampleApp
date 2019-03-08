@@ -1,13 +1,9 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace IBSampleApp.messages
 {
-    class TickOptionMessage : MarketDataMessage
+    internal class TickOptionMessage : MarketDataMessage
     {
         private double impliedVolatility;
         private double delta;
@@ -36,19 +32,19 @@ namespace IBSampleApp.messages
             get { return impliedVolatility; }
             set { impliedVolatility = value; }
         }
-        
+
         public double Delta
         {
             get { return delta; }
             set { delta = value; }
-        }        
+        }
 
         public double OptPrice
         {
             get { return optPrice; }
             set { optPrice = value; }
         }
-        
+
         public double PvDividend
         {
             get { return pvDividend; }
@@ -78,6 +74,5 @@ namespace IBSampleApp.messages
             get { return undPrice; }
             set { undPrice = value; }
         }
-                
     }
 }

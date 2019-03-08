@@ -1,14 +1,11 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using System.Data;
 
 namespace IBSampleApp.types
 {
-    class IBType
+    internal class IBType
     {
         private string name;
         private object value;
@@ -23,7 +20,7 @@ namespace IBSampleApp.types
         {
             get { return name; }
         }
-        
+
         public object Value
         {
             get { return this.value; }
@@ -35,12 +32,13 @@ namespace IBSampleApp.types
         }
     }
 
-    class TriggerMethod
+    internal class TriggerMethod
     {
         public static object[] GetAll()
         {
-            return new object[] { Default, DoubleBidAsk, Last, DoubleLast,  BidAsk, LastBidOrAsk, Midpoint};
+            return new object[] { Default, DoubleBidAsk, Last, DoubleLast, BidAsk, LastBidOrAsk, Midpoint };
         }
+
         public static IBType Default = new IBType("Default", 0);
         public static IBType DoubleBidAsk = new IBType("DoubleBidAsk", 1);
         public static IBType Last = new IBType("Last", 2);
@@ -50,12 +48,13 @@ namespace IBSampleApp.types
         public static IBType Midpoint = new IBType("Midpoint", 6);
     }
 
-    class Rule80A
+    internal class Rule80A
     {
         public static object[] GetAll()
         {
             return new object[] { None, Individual, Agency, AgentOtherMember, IndividualPTIA, AgencyPTIA, AgentOtherMemberPTIA, IndividualPT, AgencyPT, AgentOtherMemberPT };
         }
+
         public static IBType None = new IBType("None", "");
         public static IBType Individual = new IBType("Individual", "I");
         public static IBType Agency = new IBType("Agency", "A");
@@ -68,24 +67,26 @@ namespace IBSampleApp.types
         public static IBType AgentOtherMemberPT = new IBType("AgentOtherMemberPT", "N");
     }
 
-    class OCAType
+    internal class OCAType
     {
         public static object[] GetAll()
         {
-            return new object[] {None, CancelWithBlocking, ReduceWithBlocking, ReduceWithoutBlocking };
+            return new object[] { None, CancelWithBlocking, ReduceWithBlocking, ReduceWithoutBlocking };
         }
+
         public static IBType None = new IBType("None", 0);
         public static IBType CancelWithBlocking = new IBType("CancelWithBlocking", 1);
         public static IBType ReduceWithBlocking = new IBType("ReduceWithBlocking", 2);
         public static IBType ReduceWithoutBlocking = new IBType("ReduceWithoutBlocking", 3);
     }
 
-    class HedgeType
+    internal class HedgeType
     {
         public static object[] GetAll()
         {
             return new object[] { None, Delta, Beta, Fx, Pair };
         }
+
         public static IBType None = new IBType("None", "");
         public static IBType Delta = new IBType("Delta", "D");
         public static IBType Beta = new IBType("Beta", "B");
@@ -93,34 +94,37 @@ namespace IBSampleApp.types
         public static IBType Pair = new IBType("Pair", "P");
     }
 
-    class VolatilityType
+    internal class VolatilityType
     {
         public static object[] GetAll()
         {
-            return new object[] { None, Daily, Annual};
+            return new object[] { None, Daily, Annual };
         }
+
         public static IBType None = new IBType("None", 0);
         public static IBType Daily = new IBType("Daily", 1);
         public static IBType Annual = new IBType("Annual", 1);
     }
 
-    class ReferencePriceType
+    internal class ReferencePriceType
     {
         public static object[] GetAll()
         {
-            return new object[] {None, Midpoint, BidOrAsk };
+            return new object[] { None, Midpoint, BidOrAsk };
         }
+
         public static IBType None = new IBType("None", 0);
         public static IBType Midpoint = new IBType("Midpoint", 1);
         public static IBType BidOrAsk = new IBType("BidOrAsk", 2);
     }
 
-    class FaMethod
+    internal class FaMethod
     {
         public static object[] GetAll()
         {
             return new object[] { None, EqualQuantity, AvailableEquity, NetLiq, PctChange };
         }
+
         public static IBType None = new IBType("None", "");
         public static IBType EqualQuantity = new IBType("EqualQuantity", "EqualQuantity");
         public static IBType AvailableEquity = new IBType("AvailableEquity", "AvailableEquity");
@@ -128,11 +132,11 @@ namespace IBSampleApp.types
         public static IBType PctChange = new IBType("PctChange", "PctChange");
     }
 
-    class ContractRight
+    internal class ContractRight
     {
         public static object[] GetAll()
         {
-            return new object[] { None, Put, Call};
+            return new object[] { None, Put, Call };
         }
 
         public static IBType None = new IBType("None", "");
@@ -140,19 +144,20 @@ namespace IBSampleApp.types
         public static IBType Call = new IBType("Call", "C");
     }
 
-    class FundamentalsReport
+    internal class FundamentalsReport
     {
         public static object[] GetAll()
         {
-            return new object[] { ReportSnapshot, FinancialSummary, FinStatements, RESC};
+            return new object[] { ReportSnapshot, FinancialSummary, FinStatements, RESC };
         }
+
         public static IBType ReportSnapshot = new IBType("Company overview", "ReportSnapshot");
         public static IBType FinancialSummary = new IBType("Financial summary", "ReportsFinSummary");
         public static IBType FinStatements = new IBType("Financial statements", "ReportsFinStatements");
         public static IBType RESC = new IBType("Analyst estimates", "RESC");
     }
 
-    class FinancialAdvisorDataType
+    internal class FinancialAdvisorDataType
     {
         public static object[] GetAll()
         {
@@ -164,7 +169,7 @@ namespace IBSampleApp.types
         public static IBType Aliases = new IBType("Alias", 3);
     }
 
-    class AllocationGroupMethod
+    internal class AllocationGroupMethod
     {
         //The DataTable will then properly populate the grid's ComboBox cell
         public static DataTable GetAsData()
@@ -185,7 +190,7 @@ namespace IBSampleApp.types
         public static IBType PercentChange = new IBType("Percent change", "PctChange");
     }
 
-    class AllocationProfileType
+    internal class AllocationProfileType
     {
         public static DataTable GetAsData()
         {
@@ -199,7 +204,7 @@ namespace IBSampleApp.types
         }
     }
 
-    class MarketDataType
+    internal class MarketDataType
     {
         public static object[] GetAll()
         {
@@ -209,8 +214,9 @@ namespace IBSampleApp.types
         public static IBType get(int marketDataType)
         {
             IBType ret = Real_Time;
-            foreach (object ibType in MarketDataType.GetAll()){
-                if ( (int)((IBType)ibType).Value == marketDataType)
+            foreach (object ibType in MarketDataType.GetAll())
+            {
+                if ((int)((IBType)ibType).Value == marketDataType)
                 {
                     ret = (IBType)ibType;
                 }

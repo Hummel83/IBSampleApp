@@ -1,14 +1,9 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using IBApi;
 
 namespace IBSampleApp.messages
 {
-    class AccountUpdateMultiMessage 
+    internal class AccountUpdateMultiMessage
     {
         private int reqId;
         private string account;
@@ -16,7 +11,7 @@ namespace IBSampleApp.messages
         private string key;
         private string value;
         private string currency;
-        
+
         public AccountUpdateMultiMessage(int reqId, string account, string modelCode, string key, string value, string currency)
         {
             Account = account;
@@ -61,6 +56,5 @@ namespace IBSampleApp.messages
             get { return currency; }
             set { currency = value; }
         }
-
     }
 }

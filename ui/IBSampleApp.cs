@@ -1,24 +1,19 @@
 /* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using IBSampleApp.messages;
 using IBApi;
+using IBSampleApp.messages;
+using IBSampleApp.types;
 using IBSampleApp.ui;
 using IBSampleApp.util;
-using IBSampleApp.types;
-using System.Threading;
-using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Windows.Forms;
 using System.Xml;
-
 
 namespace IBSampleApp
 {
@@ -60,7 +55,6 @@ namespace IBSampleApp
             tickByTickAllLastTable = new DataTable(),
             tickByTickBidAskTable = new DataTable(),
             tickByTickMidPointTable = new DataTable();
-
 
         public IBSampleAppDialog()
         {
@@ -301,7 +295,7 @@ namespace IBSampleApp
                 obj.Data.ToList().ForEach(i => histogramDataGridView.Rows.Add(new object[] { obj.ReqId, i.Price, i.Size }));
         }
 
-        void ibClient_Tick(TickSizeMessage msg)
+        private void ibClient_Tick(TickSizeMessage msg)
         {
             addTextToBox("Tick Size. Ticker Id:" + msg.RequestId + ", Type: " + TickType.getField(msg.Field) + ", Size: " + msg.Size + "\n");
 
@@ -316,7 +310,7 @@ namespace IBSampleApp
             }
         }
 
-        void ibClient_Tick(TickPriceMessage msg)
+        private void ibClient_Tick(TickPriceMessage msg)
         {
             addTextToBox("Tick Price. Ticker Id:" + msg.RequestId + ", Type: " + TickType.getField(msg.Field) + ", Price: " + msg.Price + ", Pre-Open: " + msg.Attribs.PreOpen + "\n");
 
@@ -331,13 +325,13 @@ namespace IBSampleApp
             }
         }
 
-        void ibClient_ConnectionClosed()
+        private void ibClient_ConnectionClosed()
         {
             IsConnected = false;
             UpdateUI(new ConnectionStatusMessage(false));
         }
 
-        void ibClient_Error(int id, int errorCode, string str, Exception ex)
+        private void ibClient_Error(int id, int errorCode, string str, Exception ex)
         {
             if (ex != null)
             {
@@ -358,12 +352,10 @@ namespace IBSampleApp
             HandleErrorMessage(error);
         }
 
-
         private void addTextToBox(string text)
         {
             HandleErrorMessage(new ErrorMessage(-1, -1, text));
         }
-
 
         public bool IsConnected
         {
@@ -875,7 +867,6 @@ namespace IBSampleApp
                 underlying.SecType = "OPT";
                 optionsManager.AddOptionChainRequest(underlying, this.optionChainExchange.Text, optionChainUseSnapshot.Checked);
                 ShowTab(contractInfoTab, optionChainPage);
-
             }
         }
 
@@ -934,7 +925,6 @@ namespace IBSampleApp
 
         private void optionsTab_Click(object sender, EventArgs e)
         {
-
         }
 
         private void buttonRequestPositionsMulti_Click(object sender, EventArgs e)
@@ -1156,7 +1146,6 @@ namespace IBSampleApp
             newsManager.ClearArticleText();
         }
 
-
         private void buttonRequestHistoricalNews_Click(object sender, EventArgs e)
         {
             if (isConnected)
@@ -1176,7 +1165,6 @@ namespace IBSampleApp
         private void linkLabelClearHistoricalNews_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             newsManager.ClearHistoricalNews();
-
         }
 
         private void dataGridViewHistoricalNews_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -1279,7 +1267,7 @@ namespace IBSampleApp
             }
         }
 
-        PnLManager pnlMgr;
+        private PnLManager pnlMgr;
 
         private void btnReqPnL_Click(object sender, EventArgs e)
         {

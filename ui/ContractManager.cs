@@ -1,17 +1,14 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+
 using IBApi;
 using IBSampleApp.messages;
-using IBSampleApp.types;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace IBSampleApp.ui
 {
-    class ContractManager
+    internal class ContractManager
     {
         private IBClient ibClient;
         private TextBox fundamentals;
@@ -41,12 +38,11 @@ namespace IBSampleApp.ui
             comboContractResults = new ComboContractResults();
             ComboBoxMarketRuleId = comboBoxMarketRuleId;
             DataGridViewMarketRule = dataGridViewMarketRule;
-            LabelMarketRuleIdRes =  labelMarketRuleIdRes;
+            LabelMarketRuleIdRes = labelMarketRuleIdRes;
         }
 
         public void UpdateUI(ContractDetailsMessage message)
         {
-
             if (isComboLegRequest)
                 comboContractResults.UpdateUI(message);
             else
@@ -99,7 +95,6 @@ namespace IBSampleApp.ui
 
             UpdateMakretRuleIdsComboBox(bondContractDetailsMessage.ContractDetails.MarketRuleIds);
         }
-
 
         public void HandleContractMessage(ContractDetailsMessage contractDetailsMessage)
         {

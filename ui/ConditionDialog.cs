@@ -4,21 +4,17 @@
 using IBApi;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IBSampleApp.ui
 {
     partial class ConditionDialog : Form
     {
-        Dictionary<RadioButton, Tuple<Panel, OrderConditionType>> radioMap = new Dictionary<RadioButton, Tuple<Panel, OrderConditionType>>();
-        IEnumerable<RadioButton> radioButtons;
-        
+        private Dictionary<RadioButton, Tuple<Panel, OrderConditionType>> radioMap = new Dictionary<RadioButton, Tuple<Panel, OrderConditionType>>();
+        private IEnumerable<RadioButton> radioButtons;
+
         public OrderCondition Condition { get; private set; }
 
         public ConditionDialog(OrderCondition condition, IBClient ibClient)
@@ -42,20 +38,20 @@ namespace IBSampleApp.ui
                 foreach (var panel in tab.Controls.OfType<Panel>().ToList())
                 {
                     var cscs = panel.Controls.OfType<ContractSearchControl>().ToList();
-                    
-                    cscs.ForEach(csc => 
+
+                    cscs.ForEach(csc =>
                         csc.IBClient = ibClient);
                 }
             }
-            
+
             tabControl1.TabPages.OfType<TabPage>().Skip(2).ToList().ForEach(page => tabControl1.TabPages.Remove(page));
 
             switch (this.Condition.Type)
             {
                 case OrderConditionType.Execution:
                     fillFromCondition(this.Condition as ExecutionCondition);
-                    break;  
-  
+                    break;
+
                 case OrderConditionType.Margin:
                     fillFromCondition(this.Condition as MarginCondition);
                     break;

@@ -1,13 +1,11 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace IBSampleApp.messages
 {
-    class RealTimeBarMessage : HistoricalDataMessage
+    internal class RealTimeBarMessage : HistoricalDataMessage
     {
         private long timestamp;
         private long longVolume;
@@ -31,7 +29,7 @@ namespace IBSampleApp.messages
             LongVolume = volume;
         }
 
-        static DateTime UnixTimestampToDateTime(long unixTimestamp)
+        private static DateTime UnixTimestampToDateTime(long unixTimestamp)
         {
             DateTime unixBaseTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             return unixBaseTime.AddSeconds(unixTimestamp);

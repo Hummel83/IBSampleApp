@@ -1,22 +1,21 @@
 /* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
+
+using IBApi;
+using IBSampleApp.messages;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using IBSampleApp.messages;
-using IBApi;
 
 namespace IBSampleApp.ui
 {
-    class DeepBookManager : DataManager
+    internal class DeepBookManager : DataManager
     {
         public const int TICK_ID_BASE = 20000000;
 
         private int numRows = 3;
 
-        bool isSubscribed = false;
+        private bool isSubscribed = false;
 
         private const int BID_MAKER_IDX = 0;
         private const int BID_SIZE_IDX = 1;
@@ -29,12 +28,11 @@ namespace IBSampleApp.ui
         private DataGridView mktDepthExchangesGrid;
         private bool isSmartDepth;
 
-        
         public DeepBookManager(IBClient client, DataGridView dataGrid, DataGridView mktDepthExchangesGrid) : base(client, dataGrid)
         {
             MktDepthExchangesGrid = mktDepthExchangesGrid;
         }
-        
+
         public void AddRequest(Contract contract, int numEntries, bool isSmartDepth)
         {
             numRows = numEntries;
@@ -106,7 +104,7 @@ namespace IBSampleApp.ui
                 MktDepthExchangesGrid[1, MktDepthExchangesGrid.Rows.Count - 1].Value = mktDepthExchangesMessage.Descriptions[i].SecType;
                 MktDepthExchangesGrid[2, MktDepthExchangesGrid.Rows.Count - 1].Value = mktDepthExchangesMessage.Descriptions[i].ListingExch;
                 MktDepthExchangesGrid[3, MktDepthExchangesGrid.Rows.Count - 1].Value = mktDepthExchangesMessage.Descriptions[i].ServiceDataType;
-                MktDepthExchangesGrid[4, MktDepthExchangesGrid.Rows.Count - 1].Value = 
+                MktDepthExchangesGrid[4, MktDepthExchangesGrid.Rows.Count - 1].Value =
                     mktDepthExchangesMessage.Descriptions[i].AggGroup != Int32.MaxValue ? mktDepthExchangesMessage.Descriptions[i].AggGroup.ToString() : "";
             }
         }
@@ -122,6 +120,5 @@ namespace IBSampleApp.ui
             get { return isSmartDepth; }
             set { isSmartDepth = value; }
         }
-
     }
 }

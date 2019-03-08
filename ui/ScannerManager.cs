@@ -1,17 +1,15 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+
 using IBApi;
 using IBSampleApp.messages;
 using IBSampleApp.util;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace IBSampleApp.ui
 {
-    class ScannerManager : DataManager
+    internal class ScannerManager : DataManager
     {
         private int rowCounter = -1;
 
@@ -53,7 +51,6 @@ namespace IBSampleApp.ui
             grid[PROJECTION_IDX, rowCounter].Value = scannMessage.Projection;
             grid[LEGS_IDX, rowCounter].Value = scannMessage.LegsStr;
         }
-        
 
         public override void Clear()
         {

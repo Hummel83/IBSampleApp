@@ -2,20 +2,18 @@
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace IBSampleApp
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             //Watch out for any language formatting issues!
             Application.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");

@@ -1,13 +1,9 @@
 /* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace IBSampleApp.messages
 {
-    class DeepBookMessage
+    internal class DeepBookMessage
     {
         private int requestId;
         private int position;
@@ -35,13 +31,13 @@ namespace IBSampleApp.messages
             get { return requestId; }
             set { requestId = value; }
         }
-        
+
         public int Position
         {
             get { return position; }
             set { position = value; }
         }
-        
+
         public int Operation
         {
             get { return operation; }
@@ -53,7 +49,7 @@ namespace IBSampleApp.messages
             get { return side; }
             set { side = value; }
         }
-       
+
         public double Price
         {
             get { return price; }
@@ -77,6 +73,5 @@ namespace IBSampleApp.messages
             get { return isSmartDepth; }
             set { isSmartDepth = value; }
         }
-        
     }
 }

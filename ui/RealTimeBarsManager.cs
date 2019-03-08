@@ -1,17 +1,15 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using IBApi;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms;
 using IBSampleApp.messages;
+using System;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace IBSampleApp.ui
 {
-    class RealTimeBarsManager : HistoricalDataManager
+    internal class RealTimeBarsManager : HistoricalDataManager
     {
         public const int RT_BARS_ID_BASE = 40000000;
 

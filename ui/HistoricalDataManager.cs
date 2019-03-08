@@ -1,18 +1,17 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms.DataVisualization.Charting;
+
 using IBApi;
 using IBSampleApp.messages;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace IBSampleApp.ui
 {
-    class HistoricalDataManager : DataManager
+    internal class HistoricalDataManager : DataManager
     {
         public const int HISTORICAL_ID_BASE = 30000000;
 
@@ -24,7 +23,7 @@ namespace IBSampleApp.ui
 
         private List<HistoricalDataMessage> historicalData;
 
-        public HistoricalDataManager(IBClient ibClient, Chart chart, DataGridView gridView) : base(ibClient, chart) 
+        public HistoricalDataManager(IBClient ibClient, Chart chart, DataGridView gridView) : base(ibClient, chart)
         {
             Chart historicalChart = (Chart)uiControl;
             historicalChart.Series[0]["PriceUpColor"] = "Green";
@@ -87,10 +86,10 @@ namespace IBSampleApp.ui
         }
 
         protected void PopulateGrid(HistoricalDataMessage bar)
-        {            
+        {
             gridView.Rows.Add(1);
 
-            gridView[0, gridView.Rows.Count -1].Value = bar.Date;
+            gridView[0, gridView.Rows.Count - 1].Value = bar.Date;
             gridView[1, gridView.Rows.Count - 1].Value = bar.Open;
             gridView[2, gridView.Rows.Count - 1].Value = bar.High;
             gridView[3, gridView.Rows.Count - 1].Value = bar.Low;

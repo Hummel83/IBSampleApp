@@ -1,24 +1,22 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using IBSampleApp.messages;
-using System.Windows.Forms;
 using IBSampleApp.util;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace IBSampleApp.ui
 {
-    class AccountManager
+    internal class AccountManager
     {
         private const int ACCOUNT_ID_BASE = 50000000;
 
         private const int ACCOUNT_SUMMARY_ID = ACCOUNT_ID_BASE + 1;
 
         private const string ACCOUNT_SUMMARY_TAGS = "AccountType,NetLiquidation,TotalCashValue,SettledCash,AccruedCash,BuyingPower,EquityWithLoanValue,PreviousEquityWithLoanValue,"
-             +"GrossPositionValue,ReqTEquity,ReqTMargin,SMA,InitMarginReq,MaintMarginReq,AvailableFunds,ExcessLiquidity,Cushion,FullInitMarginReq,FullMaintMarginReq,FullAvailableFunds,"
-             +"FullExcessLiquidity,LookAheadNextChange,LookAheadInitMarginReq ,LookAheadMaintMarginReq,LookAheadAvailableFunds,LookAheadExcessLiquidity,HighestSeverity,DayTradesRemaining,Leverage";
+             + "GrossPositionValue,ReqTEquity,ReqTMargin,SMA,InitMarginReq,MaintMarginReq,AvailableFunds,ExcessLiquidity,Cushion,FullInitMarginReq,FullMaintMarginReq,FullAvailableFunds,"
+             + "FullExcessLiquidity,LookAheadNextChange,LookAheadInitMarginReq ,LookAheadMaintMarginReq,LookAheadAvailableFunds,LookAheadExcessLiquidity,HighestSeverity,DayTradesRemaining,Leverage";
 
         private IBClient ibClient;
         private List<string> managedAccounts;
@@ -62,7 +60,7 @@ namespace IBSampleApp.ui
                 }
             }
             accountSummaryGrid.Rows.Add(1);
-            accountSummaryGrid[0, accountSummaryGrid.Rows.Count-1].Value = summaryMessage.Tag;
+            accountSummaryGrid[0, accountSummaryGrid.Rows.Count - 1].Value = summaryMessage.Tag;
             accountSummaryGrid[1, accountSummaryGrid.Rows.Count - 1].Value = summaryMessage.Value;
             accountSummaryGrid[2, accountSummaryGrid.Rows.Count - 1].Value = summaryMessage.Currency;
             accountSummaryGrid[3, accountSummaryGrid.Rows.Count - 1].Value = summaryMessage.Account;
@@ -87,7 +85,6 @@ namespace IBSampleApp.ui
 
         public void HandlePortfolioValue(UpdatePortfolioMessage updatePortfolioMessage)
         {
-            
             for (int i = 0; i < accountPortfolioGrid.Rows.Count; i++)
             {
                 if (accountPortfolioGrid[0, i].Value.Equals(Utils.ContractToString(updatePortfolioMessage.Contract)))
@@ -101,7 +98,7 @@ namespace IBSampleApp.ui
                     return;
                 }
             }
-            
+
             accountPortfolioGrid.Rows.Add(1);
             accountPortfolioGrid[0, accountPortfolioGrid.Rows.Count - 1].Value = Utils.ContractToString(updatePortfolioMessage.Contract); ;
             accountPortfolioGrid[1, accountPortfolioGrid.Rows.Count - 1].Value = updatePortfolioMessage.Position;
@@ -193,9 +190,9 @@ namespace IBSampleApp.ui
         public List<string> ManagedAccounts
         {
             get { return managedAccounts; }
-            set 
-            { 
-                managedAccounts = value; 
+            set
+            {
+                managedAccounts = value;
                 SetManagedAccounts(value);
             }
         }

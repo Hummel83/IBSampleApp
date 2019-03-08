@@ -1,18 +1,16 @@
 /* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+
 using IBApi;
 using IBSampleApp.messages;
-using IBSampleApp.util;
 using IBSampleApp.types;
+using IBSampleApp.util;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace IBSampleApp.ui
 {
-    class MarketDataManager : DataManager
+    internal class MarketDataManager : DataManager
     {
         public const int TICK_ID_BASE = 10000000;
 
@@ -47,9 +45,20 @@ namespace IBSampleApp.ui
         {
         }
 
-        public bool isActive() { return active; }
-        public void setActive() { active = true; }
-        public void unsetActive() { active = false; }
+        public bool isActive()
+        {
+            return active;
+        }
+
+        public void setActive()
+        {
+            active = true;
+        }
+
+        public void unsetActive()
+        {
+            active = false;
+        }
 
         public void AddRequest(Contract contract, string genericTickList)
         {
@@ -255,9 +264,5 @@ namespace IBSampleApp.ui
                     }
             }
         }
-
     }
-
 }
-
-

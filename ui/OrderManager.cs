@@ -1,18 +1,16 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
+
+using IBApi;
+using IBSampleApp.messages;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using IBSampleApp.messages;
-using IBApi;
 using System.Windows.Forms;
-using System.ComponentModel;
 
 namespace IBSampleApp.ui
 {
-    class OrderManager
-    {        
+    internal class OrderManager
+    {
         private OrderDialog orderDialog;
         private IBClient ibClient;
         private List<string> managedAccounts;
@@ -35,7 +33,7 @@ namespace IBSampleApp.ui
         public List<string> ManagedAccounts
         {
             get { return managedAccounts; }
-            set 
+            set
             {
                 orderDialog.SetManagedAccounts(value);
                 managedAccounts = value;
@@ -86,7 +84,6 @@ namespace IBSampleApp.ui
             }
         }
 
-
         public void AttachOrder()
         {
             if (liveOrdersGrid.SelectedRows.Count > 0 && (int)(liveOrdersGrid.SelectedRows[0].Cells[2].Value) != 0 && (int)(liveOrdersGrid.SelectedRows[0].Cells[1].Value) == ibClient.ClientId)
@@ -119,7 +116,7 @@ namespace IBSampleApp.ui
                     int orderId = (int)liveOrdersGrid.SelectedRows[i].Cells[2].Value;
                     int clientId = (int)liveOrdersGrid.SelectedRows[i].Cells[1].Value;
                     OpenOrderMessage openOrder = GetOpenOrderMessage(orderId, clientId);
-                    if(openOrder != null)
+                    if (openOrder != null)
                         ibClient.ClientSocket.cancelOrder(openOrder.OrderId);
                 }
             }
@@ -168,7 +165,7 @@ namespace IBSampleApp.ui
                 }
             }
             tradeLogGrid.Rows.Add(1);
-            PopulateTradeLog(tradeLogGrid.Rows.Count-1, message);
+            PopulateTradeLog(tradeLogGrid.Rows.Count - 1, message);
         }
 
         private void PopulateTradeLog(int index, ExecutionMessage message)
@@ -203,7 +200,7 @@ namespace IBSampleApp.ui
 
         private void UpdateLiveOrders(OpenOrderMessage orderMesage)
         {
-            for (int i = 0; i < openOrders.Count; i++ )
+            for (int i = 0; i < openOrders.Count; i++)
             {
                 if (openOrders[i].Order.OrderId == orderMesage.OrderId)
                 {
@@ -216,7 +213,7 @@ namespace IBSampleApp.ui
 
         private void UpdateLiveOrdersGrid(OpenOrderMessage orderMessage)
         {
-            for (int i = 0; i<liveOrdersGrid.Rows.Count; i++)
+            for (int i = 0; i < liveOrdersGrid.Rows.Count; i++)
             {
                 if ((int)(liveOrdersGrid[2, i].Value) == orderMessage.Order.OrderId)
                 {
@@ -237,7 +234,7 @@ namespace IBSampleApp.ui
             liveOrdersGrid[4, rowIndex].Value = orderMessage.Order.ModelCode;
             liveOrdersGrid[5, rowIndex].Value = orderMessage.Order.Action;
             liveOrdersGrid[6, rowIndex].Value = orderMessage.Order.TotalQuantity;
-            liveOrdersGrid[7, rowIndex].Value = orderMessage.Contract.Symbol+" "+orderMessage.Contract.SecType+" "+orderMessage.Contract.Exchange;
+            liveOrdersGrid[7, rowIndex].Value = orderMessage.Contract.Symbol + " " + orderMessage.Contract.SecType + " " + orderMessage.Contract.Exchange;
             liveOrdersGrid[8, rowIndex].Value = orderMessage.OrderState.Status;
             liveOrdersGrid[9, rowIndex].Value = (orderMessage.Order.CashQty != Double.MaxValue ? orderMessage.Order.CashQty.ToString() : "");
         }

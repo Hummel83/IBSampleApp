@@ -1,16 +1,15 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
 
+using IBSampleApp.types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml;
-using IBSampleApp.types;
 
 namespace IBSampleApp.util
 {
-    class XmlHelper
+    internal class XmlHelper
     {
         private static string LIST_OF_ALIASES = "ListOfAccountAliases";
         private static string LIST_OF_GROUPS = "ListOfGroups";
@@ -70,7 +69,7 @@ namespace IBSampleApp.util
             List<AllocationProfile> advisorProfiles = new List<AllocationProfile>();
             XmlNode profilesListNode = xmlDocument.GetElementsByTagName(LIST_OF_PROFILES).Item(0);
             XmlNodeList profilesList = profilesListNode.ChildNodes;
-            for (int i=0; i<profilesList.Count; i++)
+            for (int i = 0; i < profilesList.Count; i++)
             {
                 AllocationProfile allocationProfile = new AllocationProfile(profilesList.Item(i).ChildNodes[0].InnerText, Int32.Parse(profilesList.Item(i).ChildNodes[1].InnerText));
                 XmlNodeList allocationNodes = profilesList[i].ChildNodes[2].ChildNodes;
@@ -83,6 +82,4 @@ namespace IBSampleApp.util
             return advisorProfiles;
         }
     }
-
-    
 }

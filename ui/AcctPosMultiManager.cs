@@ -1,16 +1,13 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using IBSampleApp.messages;
-using System.Windows.Forms;
 using IBSampleApp.util;
+using System.Windows.Forms;
 
 namespace IBSampleApp.ui
 {
-    class AcctPosMultiManager
+    internal class AcctPosMultiManager
     {
         private const int ACCTPOSMULTI_ID_BASE = 80000000;
 
@@ -28,11 +25,11 @@ namespace IBSampleApp.ui
             AccountUpdatesMultiGrid = accountUpdatesMultiGrid;
         }
 
-        public void  HandleAccountUpdateMulti(AccountUpdateMultiMessage accountUpdateMultiMessage)
+        public void HandleAccountUpdateMulti(AccountUpdateMultiMessage accountUpdateMultiMessage)
         {
             for (int i = 0; i < accountUpdatesMultiGrid.Rows.Count; i++)
             {
-                if (accountUpdatesMultiGrid[2, i].Value.Equals(accountUpdateMultiMessage.Key) && 
+                if (accountUpdatesMultiGrid[2, i].Value.Equals(accountUpdateMultiMessage.Key) &&
                     accountUpdatesMultiGrid[4, i].Value.Equals(accountUpdateMultiMessage.Currency == null ? "" : accountUpdateMultiMessage.Currency))
                 {
                     accountUpdatesMultiGrid[0, i].Value = accountUpdateMultiMessage.Account;
@@ -57,7 +54,6 @@ namespace IBSampleApp.ui
         {
             for (int i = 0; i < positionsMultiGrid.Rows.Count; i++)
             {
-
                 if (positionsMultiGrid[2, i].Value.Equals(Utils.ContractToString(positionMultiMessage.Contract)) &&
                     positionsMultiGrid[0, i].Value.Equals(positionMultiMessage.Account) &&
                     positionsMultiGrid[1, i].Value.Equals(positionMultiMessage.ModelCode == null ? "" : positionMultiMessage.ModelCode)
@@ -91,7 +87,6 @@ namespace IBSampleApp.ui
         {
             ibClient.ClientSocket.cancelPositionsMulti(POSITIONS_MULTI_ID);
         }
-
 
         public void RequestAccountUpdatesMulti(string account, string modelCode, bool ledgerAndNLV)
         {

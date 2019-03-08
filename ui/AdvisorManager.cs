@@ -1,17 +1,15 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using IBSampleApp.types;
+
 using IBSampleApp.messages;
+using IBSampleApp.types;
 using IBSampleApp.util;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace IBSampleApp.ui
 {
-    class AdvisorManager
+    internal class AdvisorManager
     {
         private IBClient ibClient;
         private DataGridView aliasesGrid;
@@ -31,27 +29,27 @@ namespace IBSampleApp.ui
             switch (message.FaDataType)
             {
                 case 1:
-                {
-                    HandleGroupsData(message.Data);
-                    break;
-                }
+                    {
+                        HandleGroupsData(message.Data);
+                        break;
+                    }
                 case 2:
-                {
-                    HandleProfilesData(message.Data);
-                    break;
-                }
+                    {
+                        HandleProfilesData(message.Data);
+                        break;
+                    }
                 case 3:
-                {
-                    HandleAliasesData(message.Data);
-                    break;
-                }
+                    {
+                        HandleAliasesData(message.Data);
+                        break;
+                    }
             }
         }
 
         private void HandleAliasesData(string aliasData)
         {
             List<AccountAlias> aliases = XmlHelper.ParseFAInformation<AccountAlias>(aliasData);
-            for(int i=0; i < aliases.Count; i++)
+            for (int i = 0; i < aliases.Count; i++)
             {
                 aliasesGrid.Rows.Add(1);
                 aliasesGrid[0, i].Value = aliases[i].Account;
@@ -75,7 +73,7 @@ namespace IBSampleApp.ui
         {
             string xmlData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
                             + "<ListOfAllocationProfiles>";
-            for (int i = 0; i < profilesGrid.Rows.Count-1; i++)
+            for (int i = 0; i < profilesGrid.Rows.Count - 1; i++)
             {
                 AllocationProfile allocProfile = new AllocationProfile((string)profilesGrid[0, i].Value, (int)profilesGrid[1, i].Value);
                 allocProfile.AllocationsFromString((string)profilesGrid[2, i].Value);
@@ -121,6 +119,7 @@ namespace IBSampleApp.ui
             get { return ibClient; }
             set { ibClient = value; }
         }
+
         public DataGridView AliasesGrid
         {
             get { return aliasesGrid; }

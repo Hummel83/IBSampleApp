@@ -1,22 +1,20 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+
 using IBApi;
 using IBSampleApp.messages;
-using IBSampleApp.util;
+using System.Windows.Forms;
 
 namespace IBSampleApp.ui
 {
-    class SymbolSamplesManager : DataManager
+    internal class SymbolSamplesManager : DataManager
     {
         protected bool active = false;
-        int activeReqId = 0;
+        private int activeReqId = 0;
 
-        public SymbolSamplesManager(IBClient client, DataGridView dataGrid) : base(client, dataGrid) {}
+        public SymbolSamplesManager(IBClient client, DataGridView dataGrid) : base(client, dataGrid)
+        {
+        }
 
         public void AddRequest(string pattern)
         {
@@ -26,15 +24,29 @@ namespace IBSampleApp.ui
                 uiControl.Visible = true;
         }
 
-        public override void NotifyError(int requestId) {}
+        public override void NotifyError(int requestId)
+        {
+        }
 
-        public override void Clear() {
+        public override void Clear()
+        {
             ((DataGridView)uiControl).Rows.Clear();
         }
 
-        public bool isActive() { return active; }
-        public void setActive() { active = true; }
-        public void unsetActive() { active = false; }
+        public bool isActive()
+        {
+            return active;
+        }
+
+        public void setActive()
+        {
+            active = true;
+        }
+
+        public void unsetActive()
+        {
+            active = false;
+        }
 
         public void UpdateUI(SymbolSamplesMessage dataMessage)
         {

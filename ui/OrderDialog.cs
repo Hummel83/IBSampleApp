@@ -1,18 +1,13 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using IBApi;
-using IBSampleApp.ui;
 using IBSampleApp.messages;
 using IBSampleApp.types;
+using IBSampleApp.ui;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace IBSampleApp
 {
@@ -40,7 +35,7 @@ namespace IBSampleApp
             cancelOrder.SelectedIndex = 0;
         }
 
-        void conditionList_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
+        private void conditionList_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
         {
             if (e.ColumnIndex == 0)
             {
@@ -52,7 +47,7 @@ namespace IBSampleApp
             (orderBindingSource[e.RowIndex] as OrderCondition).IsConjunctionConnection = e.Value.ToString().Equals("and", StringComparison.InvariantCultureIgnoreCase);
         }
 
-        void conditionList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void conditionList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (orderBindingSource.Count <= e.RowIndex)
                 return;
@@ -128,15 +123,19 @@ namespace IBSampleApp
                 case "Vwap":
                     EnableVWap();
                     break;
+
                 case "Twap":
                     EnableTWap();
                     break;
+
                 case "ArrivalPx":
                     EnableArrivalPx();
                     break;
+
                 case "DarkIce":
                     EnableDarkIce();
                     break;
+
                 case "PctVol":
                     EnablePctVol();
                     break;
@@ -495,7 +494,7 @@ namespace IBSampleApp
             orderId = id;
         }
 
-        string doubleToStr(double val)
+        private string doubleToStr(double val)
         {
             return val != double.MaxValue ? val.ToString() : "";
         }
@@ -578,7 +577,7 @@ namespace IBSampleApp
             cbAdjustedTrailingAmntUnit.SelectedIndex = 0;
         }
 
-        int reqId = 0;
+        private int reqId = 0;
 
         protected override void OnActivated(EventArgs e)
         {
@@ -588,10 +587,10 @@ namespace IBSampleApp
                 orderManager.IBClient.ClientSocket.reqSoftDollarTiers(reqId++);
         }
 
-        class TrailingAmountUnit
+        private class TrailingAmountUnit
         {
             public int Val { get; private set; }
-            string txt;
+            private string txt;
 
             public override string ToString()
             {

@@ -1,13 +1,12 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace IBSampleApp.types
 {
-    class AccountAlias
+    internal class AccountAlias
     {
         private string account;
         private string alias;
@@ -24,8 +23,8 @@ namespace IBSampleApp.types
                  "\t<AccountAlias>"
                 + "\t\t<Account>" + account + "</Account>"
                 + "\t\t\t<Alias>" + alias + "</Alias>"
-                + "\t</AccountAlias>";          
-            
+                + "\t</AccountAlias>";
+
             return xml;
         }
 
@@ -34,7 +33,7 @@ namespace IBSampleApp.types
             get { return account; }
             set { account = value; }
         }
-        
+
         public string Alias
         {
             get { return alias; }
@@ -42,7 +41,7 @@ namespace IBSampleApp.types
         }
     }
 
-    class AdvisorGroup
+    internal class AdvisorGroup
     {
         private string name;
         private string defaultMethod;
@@ -59,16 +58,16 @@ namespace IBSampleApp.types
         {
             string xml =
                  "  <Group>"
-                +"      <name>"+name+"</name>"
-                +"      <ListOfAccts varName=\"list\">";
-            foreach(string account in accounts)
-                xml+="         <String>"+account+"</String>";
+                + "      <name>" + name + "</name>"
+                + "      <ListOfAccts varName=\"list\">";
+            foreach (string account in accounts)
+                xml += "         <String>" + account + "</String>";
 
             xml +=
                  "      </ListOfAccts>"
-                +"      <defaultMethod>"+defaultMethod+"</defaultMethod>"
-                +"  </Group>";
-            
+                + "      <defaultMethod>" + defaultMethod + "</defaultMethod>"
+                + "  </Group>";
+
             return xml;
         }
 
@@ -92,13 +91,13 @@ namespace IBSampleApp.types
             get { return name; }
             set { name = value; }
         }
-       
+
         public string DefaultMethod
         {
             get { return defaultMethod; }
             set { defaultMethod = value; }
         }
-        
+
         public List<string> Accounts
         {
             get { return accounts; }
@@ -106,7 +105,7 @@ namespace IBSampleApp.types
         }
     }
 
-    class AllocationProfile
+    internal class AllocationProfile
     {
         private string name;
         private int type;
@@ -121,26 +120,26 @@ namespace IBSampleApp.types
 
         public string ToXmlString()
         {
-            string xml = 
+            string xml =
                  "  <AllocationProfile>"
-                +"      <name>"+name+"</name>"
-                +"      <type>"+Type+"</type>"
-                +"      <ListOfAllocations varName=\"listOfAllocations\">";
+                + "      <name>" + name + "</name>"
+                + "      <type>" + Type + "</type>"
+                + "      <ListOfAllocations varName=\"listOfAllocations\">";
 
             foreach (Allocation profileAllocation in allocations)
                 xml += profileAllocation.ToXmlString();
 
             xml +=
                  "      </ListOfAllocations>"
-                +"  </AllocationProfile>";
+                + "  </AllocationProfile>";
 
             return xml;
         }
 
         public string AllocationsToString()
         {
-            string str = Allocations[0].Account+"/"+Allocations[0].Amount;
-            for(int i=1; i<allocations.Count; i++)
+            string str = Allocations[0].Account + "/" + Allocations[0].Amount;
+            for (int i = 1; i < allocations.Count; i++)
             {
                 str += "," + Allocations[i].Account + "/" + Allocations[i].Amount;
             }
@@ -159,10 +158,10 @@ namespace IBSampleApp.types
                 }
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
-            }                
+            }
         }
 
         public string Name
@@ -176,7 +175,7 @@ namespace IBSampleApp.types
             get { return type; }
             set { type = value; }
         }
-       
+
         public List<Allocation> Allocations
         {
             get { return allocations; }
@@ -184,7 +183,7 @@ namespace IBSampleApp.types
         }
     }
 
-    class Allocation
+    internal class Allocation
     {
         private string account;
         private double amount;
@@ -197,12 +196,12 @@ namespace IBSampleApp.types
 
         public string ToXmlString()
         {
-            string xml = 
+            string xml =
                  "          <Allocation>"
-                +"              <acct>"+account+"</acct>"
-                +"              <amount>"+amount+"</amount>"
-                +"              <posEff>O</posEff>"
-                +"          </Allocation>";
+                + "              <acct>" + account + "</acct>"
+                + "              <amount>" + amount + "</amount>"
+                + "              <posEff>O</posEff>"
+                + "          </Allocation>";
 
             return xml;
         }
@@ -212,7 +211,7 @@ namespace IBSampleApp.types
             get { return account; }
             set { account = value; }
         }
-        
+
         public double Amount
         {
             get { return amount; }

@@ -1,14 +1,11 @@
 ﻿/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using IBApi;
 
 namespace IBSampleApp.messages
 {
-    class ScannerMessage
+    internal class ScannerMessage
     {
         private int requestId;
         private int rank;
@@ -58,20 +55,17 @@ namespace IBSampleApp.messages
             get { return benchmark; }
             set { benchmark = value; }
         }
-        
 
         public string Projection
         {
             get { return projection; }
             set { projection = value; }
         }
-        
 
         public string LegsStr
         {
             get { return legsStr; }
             set { legsStr = value; }
         }
-
     }
 }

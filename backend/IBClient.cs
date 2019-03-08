@@ -1,18 +1,17 @@
 /* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
+
+using IBApi;
+using IBSampleApp.messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using IBApi;
-using System.Windows.Forms;
-using IBSampleApp.messages;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace IBSampleApp
 {
-    class IBClient : EWrapper
+    internal class IBClient : EWrapper
     {
         private EClientSocket clientSocket;
         private int nextOrderId;
@@ -111,7 +110,7 @@ namespace IBSampleApp
             set { clientId = value; }
         }
 
-        SynchronizationContext sc;
+        private SynchronizationContext sc;
 
         public IBClient(EReaderSignal signal)
         {
@@ -578,6 +577,7 @@ namespace IBSampleApp
             if (tmp != null)
                 sc.Post((t) => tmp(apiData), null);
         }
+
         public event Action<bool, string> VerifyCompleted;
 
         void EWrapper.verifyCompleted(bool isSuccessful, string errorText)
@@ -627,7 +627,6 @@ namespace IBSampleApp
             if (tmp != null)
                 sc.Post((t) => tmp(reqId, contractInfo), null);
         }
-
 
         void EWrapper.connectAck()
         {
@@ -724,7 +723,6 @@ namespace IBSampleApp
             if (tmp != null)
                 sc.Post((t) => tmp(new SymbolSamplesMessage(reqId, contractDescriptions)), null);
         }
-
 
         public event Action<DepthMktDataDescription[]> MktDepthExchanges;
 
@@ -914,7 +912,7 @@ namespace IBSampleApp
             var tmp = historicalTickLast;
 
             if (tmp != null)
-                ticks.ToList().ForEach(tick => sc.Post((t) => 
+                ticks.ToList().ForEach(tick => sc.Post((t) =>
                     tmp(new HistoricalTickLastMessage(reqId, tick.Time, tick.TickAttribLast, tick.Price, tick.Size, tick.Exchange, tick.SpecialConditions)), null));
         }
 
@@ -957,6 +955,5 @@ namespace IBSampleApp
             if (tmp != null)
                 sc.Post((t) => tmp(new OrderBoundMessage(orderId, apiClientId, apiOrderId)), null);
         }
-
     }
 }
