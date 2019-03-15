@@ -8,13 +8,13 @@ namespace IBSampleApp.messages
         private int reqId;
 
         public AccountUpdateMultiEndMessage(int reqId)
-        {
-            ReqId = ReqId;
+        {          
+            this.reqId = reqId;
         }
 
         public int ReqId
         {
-            get { return reqId; }
+            get { return this.reqId; }
             set { reqId = value; }
         }
     }

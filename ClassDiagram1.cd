@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IBSampleApp.IBSampleAppDialog">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>//3///v/v////9///f//9////37/////3////f////8=</HashCode>
+      <FileName>ui\IBSampleApp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IBSampleApp.ui.MarginDialog">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="IBSampleApp.ui.MarginDialog.UpdateMarginInformationDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ui\MarginDialog.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAACIAAABAMACAYAAKAhEAwAAgEwAAAQAAAAE=</HashCode>
+      <FileName>ui\MarginDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -12,19 +12,19 @@ namespace IBSampleApp.messages
 
         public BondContractDetailsMessage(int requestId, ContractDetails contractDetails)
         {
-            RequestId = requestId;
-            ContractDetails = contractDetails;
+            this.requestId = requestId;
+            this.contractDetails = contractDetails;
         }
 
         public ContractDetails ContractDetails
         {
-            get { return contractDetails; }
+            get { return this.contractDetails; }
             set { contractDetails = value; }
         }
 
         public int RequestId
         {
-            get { return requestId; }
+            get { return this.requestId; }
             set { requestId = value; }
         }
     }

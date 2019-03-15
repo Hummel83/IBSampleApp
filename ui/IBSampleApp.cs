@@ -220,14 +220,14 @@ namespace IBSampleApp
             ibClient.RerouteMktDataReq += (reqId, conId, exchange) => addTextToBox("Re-route market data request. ReqId: " + reqId + ", ConId: " + conId + ", Exchange: " + exchange + "\n");
             ibClient.RerouteMktDepthReq += (reqId, conId, exchange) => addTextToBox("Re-route market depth request. ReqId: " + reqId + ", ConId: " + conId + ", Exchange: " + exchange + "\n");
             ibClient.MarketRule += contractManager.HandleMarketRuleMessage;
-            ibClient.pnl += msg => pnldataTable.Rows.Add(msg.DailyPnL, msg.UnrealizedPnL, msg.RealizedPnL);
-            ibClient.pnlSingle += msg => pnlSingledataTable.Rows.Add(msg.Pos, msg.DailyPnL, msg.UnrealizedPnL, msg.RealizedPnL, msg.Value);
-            ibClient.historicalTick += UpdateUI;
-            ibClient.historicalTickBidAsk += UpdateUI;
-            ibClient.historicalTickLast += UpdateUI;
-            ibClient.tickByTickAllLast += UpdateUI;
-            ibClient.tickByTickBidAsk += UpdateUI;
-            ibClient.tickByTickMidPoint += UpdateUI;
+            ibClient.Pnl += msg => pnldataTable.Rows.Add(msg.DailyPnL, msg.UnrealizedPnL, msg.RealizedPnL);
+            ibClient.PnlSingle += msg => pnlSingledataTable.Rows.Add(msg.Pos, msg.DailyPnL, msg.UnrealizedPnL, msg.RealizedPnL, msg.Value);
+            ibClient.HistoricalTick += UpdateUI;
+            ibClient.HistoricalTickBidAsk += UpdateUI;
+            ibClient.HistoricalTickLast += UpdateUI;
+            ibClient.TickByTickAllLast += UpdateUI;
+            ibClient.TickByTickBidAsk += UpdateUI;
+            ibClient.TickByTickMidPoint += UpdateUI;
             ibClient.OrderBound += msg => addTextToBox("Order bound. OrderId: " + msg.OrderId + ", ApiClientId: " + msg.ApiClientId + ", ApiOrderId: " + msg.ApiOrderId);
         }
 

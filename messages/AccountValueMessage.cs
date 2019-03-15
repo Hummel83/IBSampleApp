@@ -12,15 +12,15 @@ namespace IBSampleApp.messages
 
         public AccountValueMessage(string key, string value, string currency, string accountName)
         {
-            Key = key;
-            Value = value;
-            Currency = currency;
-            AccountName = accountName;
+            this.key = key;
+            this.value = value;
+            this.currency = currency;
+            this.accountName = accountName;
         }
 
         public string Key
         {
-            get { return key; }
+            get { return this.key; }
             set { key = value; }
         }
 
@@ -32,13 +32,13 @@ namespace IBSampleApp.messages
 
         public string Currency
         {
-            get { return currency; }
+            get { return this.currency; }
             set { currency = value; }
         }
 
         public string AccountName
         {
-            get { return accountName; }
+            get { return this.accountName; }
             set { accountName = value; }
         }
     }

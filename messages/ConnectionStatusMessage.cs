@@ -9,7 +9,7 @@ namespace IBSampleApp.messages
 
         public bool IsConnected
         {
-            get { return isConnected; }
+            get { return this.isConnected; }
         }
 
         public ConnectionStatusMessage(bool isConnected)

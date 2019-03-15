@@ -110,7 +110,7 @@ namespace IBSampleApp
             set { clientId = value; }
         }
 
-        private SynchronizationContext sc;
+        private readonly SynchronizationContext sc;
 
         public IBClient(EReaderSignal signal)
         {
@@ -864,83 +864,83 @@ namespace IBSampleApp
                 sc.Post((t) => tmp(new MarketRuleMessage(marketRuleId, priceIncrements)), null);
         }
 
-        public event Action<PnLMessage> pnl;
+        public event Action<PnLMessage> Pnl;
 
         void EWrapper.pnl(int reqId, double dailyPnL, double unrealizedPnL, double realizedPnL)
         {
-            var tmp = pnl;
+            var tmp = Pnl;
 
             if (tmp != null)
                 sc.Post((t) => tmp(new PnLMessage(reqId, dailyPnL, unrealizedPnL, realizedPnL)), null);
         }
 
-        public event Action<PnLSingleMessage> pnlSingle;
+        public event Action<PnLSingleMessage> PnlSingle;
 
         void EWrapper.pnlSingle(int reqId, int pos, double dailyPnL, double unrealizedPnL, double realizedPnL, double value)
         {
-            var tmp = pnlSingle;
+            var tmp = PnlSingle;
 
             if (tmp != null)
                 sc.Post((t) => tmp(new PnLSingleMessage(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)), null);
         }
 
-        public event Action<HistoricalTickMessage> historicalTick;
+        public event Action<HistoricalTickMessage> HistoricalTick;
 
         void EWrapper.historicalTicks(int reqId, HistoricalTick[] ticks, bool done)
         {
-            var tmp = historicalTick;
+            var tmp = HistoricalTick;
 
             if (tmp != null)
                 ticks.ToList().ForEach(tick => sc.Post((t) => tmp(new HistoricalTickMessage(reqId, tick.Time, tick.Price, tick.Size)), null));
         }
 
-        public event Action<HistoricalTickBidAskMessage> historicalTickBidAsk;
+        public event Action<HistoricalTickBidAskMessage> HistoricalTickBidAsk;
 
         void EWrapper.historicalTicksBidAsk(int reqId, HistoricalTickBidAsk[] ticks, bool done)
         {
-            var tmp = historicalTickBidAsk;
+            var tmp = HistoricalTickBidAsk;
 
             if (tmp != null)
                 ticks.ToList().ForEach(tick => sc.Post((t) =>
                     tmp(new HistoricalTickBidAskMessage(reqId, tick.Time, tick.TickAttribBidAsk, tick.PriceBid, tick.PriceAsk, tick.SizeBid, tick.SizeAsk)), null));
         }
 
-        public event Action<HistoricalTickLastMessage> historicalTickLast;
+        public event Action<HistoricalTickLastMessage> HistoricalTickLast;
 
         void EWrapper.historicalTicksLast(int reqId, HistoricalTickLast[] ticks, bool done)
         {
-            var tmp = historicalTickLast;
+            var tmp = HistoricalTickLast;
 
             if (tmp != null)
                 ticks.ToList().ForEach(tick => sc.Post((t) =>
                     tmp(new HistoricalTickLastMessage(reqId, tick.Time, tick.TickAttribLast, tick.Price, tick.Size, tick.Exchange, tick.SpecialConditions)), null));
         }
 
-        public event Action<TickByTickAllLastMessage> tickByTickAllLast;
+        public event Action<TickByTickAllLastMessage> TickByTickAllLast;
 
         void EWrapper.tickByTickAllLast(int reqId, int tickType, long time, double price, int size, TickAttribLast tickAttribLast, string exchange, string specialConditions)
         {
-            var tmp = tickByTickAllLast;
+            var tmp = TickByTickAllLast;
 
             if (tmp != null)
                 sc.Post((t) => tmp(new TickByTickAllLastMessage(reqId, tickType, time, price, size, tickAttribLast, exchange, specialConditions)), null);
         }
 
-        public event Action<TickByTickBidAskMessage> tickByTickBidAsk;
+        public event Action<TickByTickBidAskMessage> TickByTickBidAsk;
 
         void EWrapper.tickByTickBidAsk(int reqId, long time, double bidPrice, double askPrice, int bidSize, int askSize, TickAttribBidAsk tickAttribBidAsk)
         {
-            var tmp = tickByTickBidAsk;
+            var tmp = TickByTickBidAsk;
 
             if (tmp != null)
                 sc.Post((t) => tmp(new TickByTickBidAskMessage(reqId, time, bidPrice, askPrice, bidSize, askSize, tickAttribBidAsk)), null);
         }
 
-        public event Action<TickByTickMidPointMessage> tickByTickMidPoint;
+        public event Action<TickByTickMidPointMessage> TickByTickMidPoint;
 
         void EWrapper.tickByTickMidPoint(int reqId, long time, double midPoint)
         {
-            var tmp = tickByTickMidPoint;
+            var tmp = TickByTickMidPoint;
 
             if (tmp != null)
                 sc.Post((t) => tmp(new TickByTickMidPointMessage(reqId, time, midPoint)), null);

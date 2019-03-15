@@ -10,19 +10,19 @@ namespace IBSampleApp.messages
 
         public AdvisorDataMessage(int faDataType, string data)
         {
-            FaDataType = faDataType;
-            Data = data;
+            this.faDataType = faDataType;
+            this.data = data;
         }
 
         public int FaDataType
         {
-            get { return faDataType; }
+            get { return this.faDataType; }
             set { faDataType = value; }
         }
 
         public string Data
         {
-            get { return data; }
+            get { return this.data; }
             set { data = value; }
         }
     }

@@ -14,34 +14,35 @@ namespace IBSampleApp.messages
 
         public AccountUpdateMultiMessage(int reqId, string account, string modelCode, string key, string value, string currency)
         {
-            Account = account;
-            ModelCode = modelCode;
-            Key = key;
-            Value = value;
-            Currency = currency;
+            this.reqId = reqId;
+            this.account = account;
+            this.modelCode = modelCode;
+            this.key = key;
+            this.value = value;
+            this.currency = currency;
         }
 
         public int ReqId
         {
-            get { return reqId; }
+            get { return this.reqId; }
             set { reqId = value; }
         }
 
         public string Account
         {
-            get { return account; }
+            get { return this.account; }
             set { account = value; }
         }
 
         public string ModelCode
         {
-            get { return modelCode; }
+            get { return this.modelCode; }
             set { modelCode = value; }
         }
 
         public string Key
         {
-            get { return key; }
+            get { return this.key; }
             set { key = value; }
         }
 
@@ -53,7 +54,7 @@ namespace IBSampleApp.messages
 
         public string Currency
         {
-            get { return currency; }
+            get { return this.currency; }
             set { currency = value; }
         }
     }
