@@ -6,6 +6,7 @@ using IBSampleApp.messages;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using IBSampleApp.backend;
 
 namespace IBSampleApp.ui
 {

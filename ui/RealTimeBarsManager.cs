@@ -6,6 +6,7 @@ using IBSampleApp.messages;
 using System;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using IBSampleApp.backend;
 
 namespace IBSampleApp.ui
 {

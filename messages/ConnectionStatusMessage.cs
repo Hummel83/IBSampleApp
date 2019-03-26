@@ -5,16 +5,11 @@ namespace IBSampleApp.messages
 {
     internal class ConnectionStatusMessage
     {
-        private bool isConnected;
-
-        public bool IsConnected
-        {
-            get { return this.isConnected; }
-        }
+        public bool IsConnected { get; }
 
         public ConnectionStatusMessage(bool isConnected)
         {
-            this.isConnected = isConnected;
+            this.IsConnected = isConnected;
         }
     }
 }

@@ -6,6 +6,7 @@ using IBSampleApp.types;
 using IBSampleApp.util;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using IBSampleApp.backend;
 
 namespace IBSampleApp.ui
 {

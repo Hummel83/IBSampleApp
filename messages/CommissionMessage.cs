@@ -11,12 +11,12 @@ namespace IBSampleApp.messages
 
         public CommissionMessage(CommissionReport commissionReport)
         {
-            CommissionReport = commissionReport;
+            this.commissionReport = commissionReport;
         }
 
         public CommissionReport CommissionReport
         {
-            get { return commissionReport; }
+            get { return this.commissionReport; }
             set { commissionReport = value; }
         }
     }

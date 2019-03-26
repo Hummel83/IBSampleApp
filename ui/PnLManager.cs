@@ -2,6 +2,7 @@
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
 
 using System;
+using IBSampleApp.backend;
 
 namespace IBSampleApp.ui
 {
